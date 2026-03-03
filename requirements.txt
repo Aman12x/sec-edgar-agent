@@ -1,0 +1,39 @@
+# Core orchestration
+prefect
+#prefect-aws
+
+# SEC data ingestion
+sec-edgar-downloader
+
+# Document parsing
+docling
+
+# Agentic framework
+langgraph
+langchain
+langchain-groq
+langchain-community
+langsmith
+
+# LLM providers
+groq
+ollama  # optional: local inference
+
+# Data validation
+pydantic
+
+# Utilities
+ratelimit
+tenacity
+httpx
+python-dotenv
+loguru
+
+# Storage
+sqlitedict
+
+# Testing
+pytest
+pytest-asyncio
+streamlit
+pandas

@@ -1,0 +1,31 @@
+# AFIP Default Ticker Watchlist
+# One ticker per line. Lines starting with # are comments.
+# Use with: python scripts/batch_run.py --from-file tickers.txt
+
+# Big Tech
+AAPL
+MSFT
+GOOGL
+AMZN
+META
+NVDA
+
+# Financials
+JPM
+BAC
+GS
+WFC
+
+# Healthcare
+JNJ
+UNH
+PFE
+
+# Consumer
+WMT
+COST
+MCD
+
+# Energy
+XOM
+CVX
