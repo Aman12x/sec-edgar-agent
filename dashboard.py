@@ -537,9 +537,9 @@ elif page == "Run Pipeline":
     st.markdown('<div class="period-sub">Trigger a new extraction from SEC EDGAR</div>', unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # Check config
-    groq_key = os.getenv("GROQ_API_KEY", "")
-    sec_agent = os.getenv("SEC_USER_AGENT", "")
+    # Check config — fall back to st.secrets for Streamlit Cloud deployments
+    groq_key = os.getenv("GROQ_API_KEY") or st.secrets.get("GROQ_API_KEY", "")
+    sec_agent = os.getenv("SEC_USER_AGENT") or st.secrets.get("SEC_USER_AGENT", "")
     config_ok = bool(groq_key) and "example.com" not in sec_agent and bool(sec_agent)
 
     if not config_ok:
