@@ -545,10 +545,21 @@ elif page == "Run Pipeline":
     st.markdown('<div class="period-sub">Trigger a new extraction from SEC EDGAR</div>', unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # Check config
-    groq_key = os.getenv("GROQ_API_KEY", "")
-    sec_agent = os.getenv("SEC_USER_AGENT", "")
+    # Check config — read from env or st.secrets directly
+    def _secret(key: str) -> str:
+        val = os.getenv(key, "")
+        if not val:
+            try:
+                val = str(st.secrets[key])
+            except Exception:
+                val = ""
+        return val
+
+    groq_key = _secret("GROQ_API_KEY")
+    sec_agent = _secret("SEC_USER_AGENT")
     config_ok = bool(groq_key) and "example.com" not in sec_agent and bool(sec_agent)
+
+    st.caption(f"DEBUG — groq_key set: {bool(groq_key)} | sec_agent set: {bool(sec_agent)}")
 
     if not config_ok:
         st.warning("""
