@@ -26,13 +26,6 @@ load_dotenv()
 
 import streamlit as st
 
-# Inject Streamlit Cloud secrets into os.environ so all os.getenv() calls work
-try:
-    for _k, _v in st.secrets.items():
-        os.environ.setdefault(_k, str(_v))
-except Exception:
-    pass
-
 # ── Page config (must be first Streamlit call) ──────────────────────────────
 st.set_page_config(
     page_title="AFIP — Financial Intelligence",
@@ -40,6 +33,14 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
+
+# Inject Streamlit Cloud secrets into os.environ so all os.getenv() calls work
+for _key in ["GROQ_API_KEY", "SEC_USER_AGENT", "LANGCHAIN_API_KEY", "LANGCHAIN_TRACING_V2"]:
+    try:
+        if _key in st.secrets and not os.environ.get(_key):
+            os.environ[_key] = str(st.secrets[_key])
+    except Exception:
+        pass
 
 # ── Add project root to path ─────────────────────────────────────────────────
 ROOT = Path(__file__).parent
