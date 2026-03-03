@@ -261,6 +261,14 @@ LangGraph picks this up automatically — no code changes needed.
 
 ---
 
+## Prefect DAG — Live Run
+
+10 tickers processed concurrently, all verified in under 2 minutes.
+
+![Prefect DAG](assets/DAG_RUN.png)
+
+---
+
 ## Scheduled Deployment (Prefect Cloud)
 
 ```bash
